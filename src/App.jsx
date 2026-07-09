@@ -1,121 +1,142 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import {
+  FaArrowRight,
+  FaBookOpen,
+  FaCalendarCheck,
+  FaChartLine,
+  FaEye,
+  FaEyeSlash,
+  FaGoogle,
+  FaLock,
+} from 'react-icons/fa6'
 import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showPassword, setShowPassword] = useState(false)
+
+  function handleSubmit(event) {
+    event.preventDefault()
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+    <main className="login-page">
+      <section className="login-shell">
+        <aside className="brand-panel">
+          <div className="brand-badge">
+            <img src={heroImg} alt="" aria-hidden="true" />
+            <span>AI Study Planner</span>
+          </div>
+
+          <div className="brand-copy">
+            <p className="eyebrow">Welcome back</p>
+            <h1>Log in and pick up your study plan.</h1>
+            <p className="lede">
+              Keep your schedule, goals, and progress in one place with a clean
+              workspace built for focus.
+            </p>
+          </div>
+
+          <div className="feature-list" aria-label="Highlights">
+            <article>
+              <FaBookOpen aria-hidden="true" />
+              <div>
+                <h2>Study paths</h2>
+                <p>Organize every subject into a clear next step.</p>
+              </div>
+            </article>
+            <article>
+              <FaCalendarCheck aria-hidden="true" />
+              <div>
+                <h2>Smart planning</h2>
+                <p>Turn deadlines into a schedule you can actually follow.</p>
+              </div>
+            </article>
+            <article>
+              <FaChartLine aria-hidden="true" />
+              <div>
+                <h2>Visible progress</h2>
+                <p>Track momentum with a dashboard that stays out of the way.</p>
+              </div>
+            </article>
+          </div>
+        </aside>
+
+        <section className="form-panel" aria-labelledby="login-title">
+          <div className="form-card">
+            <div className="form-header">
+              <span className="form-kicker">
+                <FaLock aria-hidden="true" />
+                Secure sign in
+              </span>
+              <h2 id="login-title">Login to your account</h2>
+              <p>
+                Use your email and password to continue where you left off.
+              </p>
+            </div>
+
+            <form className="login-form" onSubmit={handleSubmit}>
+              <label className="field">
+                <span>Email address</span>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  autoComplete="email"
+                />
+              </label>
+
+              <label className="field">
+                <span>Password</span>
+                <div className="password-field">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    placeholder="Enter your password"
+                    autoComplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    className="icon-button"
+                    onClick={() => setShowPassword((visible) => !visible)}
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <FaEyeSlash aria-hidden="true" /> : <FaEye aria-hidden="true" />}
+                  </button>
+                </div>
+              </label>
+
+              <div className="form-row">
+                <label className="checkbox">
+                  <input type="checkbox" name="remember" defaultChecked />
+                  <span>Remember me</span>
+                </label>
+
+                <a href="/">Forgot password?</a>
+              </div>
+
+              <button type="submit" className="primary-button">
+                Sign in
+                <FaArrowRight aria-hidden="true" />
+              </button>
+
+              <div className="divider">
+                <span>or continue with</span>
+              </div>
+
+              <button type="button" className="secondary-button">
+                <FaGoogle aria-hidden="true" />
+                Continue with Google
+              </button>
+
+              <p className="signup-text">
+                New here? <a href="/">Create an account</a>
+              </p>
+            </form>
+          </div>
+        </section>
       </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    </main>
   )
 }
 
